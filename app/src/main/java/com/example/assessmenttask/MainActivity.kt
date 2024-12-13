@@ -134,11 +134,11 @@ private val dataLists = listOf(
         ItemData(R.drawable.blueberry, "Southern Highbush Blueberry", "Fruit"),
     ),
     listOf(
-        ItemData(R.drawable.apple, "Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Red Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Plantain Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Blue Java Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Burro Banana", "Fruit"),
+        ItemData(R.drawable.banana, "Banana", "Fruit"),
+        ItemData(R.drawable.banana, "Red Banana", "Fruit"),
+        ItemData(R.drawable.banana, "Plantain Banana", "Fruit"),
+        ItemData(R.drawable.banana, "Blue Java Banana", "Fruit"),
+        ItemData(R.drawable.banana, "Burro Banana", "Fruit"),
     ),
 )
 
