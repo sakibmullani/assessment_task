@@ -15,49 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 private lateinit var binding: ActivityMainBinding
 
-private val images = listOf(
-    R.drawable.apple,
-    R.drawable.orange,
-    R.drawable.blueberry,
-    R.drawable.banana
-)
-
-private val dataLists = listOf(
-    listOf(
-        ItemData(R.drawable.apple, "Apple", "Fruit"),
-        ItemData(R.drawable.apple, "Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Orange", "Fruit"),
-        ItemData(R.drawable.apple, "Blueberry", "Berry"),
-        ItemData(R.drawable.apple, "Apple", "Fruit"),
-        ItemData(R.drawable.apple, "Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Orange", "Fruit"),
-        ItemData(R.drawable.apple, "Blueberry", "Berry"),
-        ItemData(R.drawable.apple, "Apple", "Fruit"),
-        ItemData(R.drawable.apple, "Banana", "Fruit"),
-        ItemData(R.drawable.apple, "Orange", "Fruit"),
-        ItemData(R.drawable.apple, "Blueberry", "Berry")
-    ),
-    listOf(
-        ItemData(R.drawable.orange, "Cat", "Animal"),
-        ItemData(R.drawable.orange, "Dog", "Animal"),
-        ItemData(R.drawable.orange, "Elephant", "Animal"),
-        ItemData(R.drawable.orange, "Fox", "Animal")
-    ),
-    listOf(
-        ItemData(R.drawable.blueberry, "Guitar", "Instrument"),
-        ItemData(R.drawable.blueberry, "Piano", "Instrument"),
-        ItemData(R.drawable.blueberry, "Violin", "Instrument"),
-        ItemData(R.drawable.blueberry, "Drums", "Instrument")
-    ),
-    listOf(
-        ItemData(R.drawable.blueberry, "nature", "something"),
-        ItemData(R.drawable.blueberry, "any", "something"),
-        ItemData(R.drawable.blueberry, "ok", "something"),
-        ItemData(R.drawable.blueberry, "Buy", "something")
-    ),
-)
-
-
 private val filteredData = mutableListOf<ItemData>()
 private var currentPageIndex = 0
 
@@ -74,9 +31,13 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
 
         binding.viewPagerCarousel.adapter = ImageCarouselAdapter(images)
-        TabLayoutMediator(binding.tabLayoutIndicator, binding.viewPagerCarousel) { _, _ -> }.attach()
+        TabLayoutMediator(
+            binding.tabLayoutIndicator,
+            binding.viewPagerCarousel
+        ) { _, _ -> }.attach()
 
-        binding.viewPagerCarousel.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewPagerCarousel.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 currentPageIndex = position
@@ -116,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
         val itemCount = filteredData.size
         val charCount = filteredData
-            .joinToString("") {  (it.name + it.subName).lowercase() }
+            .joinToString("") { (it.name + it.subName).lowercase() }
             .groupingBy { it }
             .eachCount()
             .toList()
@@ -125,11 +86,60 @@ class MainActivity : AppCompatActivity() {
 
         view.findViewById<TextView>(R.id.itemCount).text = "Items: $itemCount"
         view.findViewById<TextView>(R.id.topChars).text = charCount.joinToString("\n") {
-            "${it.first} = ${it.second}"
+            "${it.first.uppercase()} = ${it.second}"
         }
 
         dialog.show()
     }
 
 }
+
+private val images = listOf(
+    R.drawable.apple,
+    R.drawable.orange,
+    R.drawable.blueberry,
+    R.drawable.banana
+)
+
+private val dataLists = listOf(
+    listOf(
+        ItemData(R.drawable.apple, "Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Green Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Red Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Golden Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Granny Smith Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Green Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Red Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Golden Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Granny Smith Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Green Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Red Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Golden Apple", "Fruit"),
+        ItemData(R.drawable.apple, "Granny Smith Apple", "Fruit"),
+    ),
+    listOf(
+        ItemData(R.drawable.orange, "Orange", "Fruit"),
+        ItemData(R.drawable.orange, "Navel Orange", "Fruit"),
+        ItemData(R.drawable.orange, "Blood Orange", "Fruit"),
+        ItemData(R.drawable.orange, "Cara Cara Orange", "Fruit"),
+        ItemData(R.drawable.orange, "Valencia Orange", "Fruit"),
+    ),
+    listOf(
+        ItemData(R.drawable.blueberry, "Blueberry", "Fruit"),
+        ItemData(R.drawable.blueberry, "Wild Blueberry", "Fruit"),
+        ItemData(R.drawable.blueberry, "Highbush Blueberry", "Fruit"),
+        ItemData(R.drawable.blueberry, "Jumbo Blueberry", "Fruit"),
+        ItemData(R.drawable.blueberry, "Southern Highbush Blueberry", "Fruit"),
+    ),
+    listOf(
+        ItemData(R.drawable.apple, "Banana", "Fruit"),
+        ItemData(R.drawable.apple, "Red Banana", "Fruit"),
+        ItemData(R.drawable.apple, "Plantain Banana", "Fruit"),
+        ItemData(R.drawable.apple, "Blue Java Banana", "Fruit"),
+        ItemData(R.drawable.apple, "Burro Banana", "Fruit"),
+    ),
+)
+
 data class ItemData(val image: Int, val name: String, val subName: String)
